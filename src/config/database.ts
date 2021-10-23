@@ -7,6 +7,19 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "postgres",
+    define: {
+      freezeTableName: true,
+      underscored: true,
+      underscoredAll: true,
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+    seederStorageTableName: "sequelize_data",
+    seederStorage: "sequelzie",
+    pool: {
+      max: 10,
+      min: 1,
+    },
   },
   test: {
     username: "root",

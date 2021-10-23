@@ -9,10 +9,9 @@ app.use(express.urlencoded({ extended: false }));
 
 const start = async () => {
   try {
-    db.sequelize.authenticate().then(() => {
-      app.listen(server_port, () => {
-        console.log(`Started on ${server_port}`);
-      });
+    db.sequelize.authenticate().then((): void => {
+      db.sequelize.sync({ force: true });
+      app.listen(server_port, () => console.log(`Started on ${server_port}`));
     });
   } catch (err) {
     console.log(err);
