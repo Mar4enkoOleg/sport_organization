@@ -15,6 +15,14 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
      */
     static associate(models: any) {
       // define association here
+      sports_facility_characteristic.belongsToMany(
+        models.sports_facility_type,
+        {
+          through: "type_characteristic",
+          foreignKey: "characteristic_id",
+          timestamps: false,
+        }
+      );
     }
   }
   sports_facility_characteristic.init(

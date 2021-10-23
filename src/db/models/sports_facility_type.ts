@@ -14,6 +14,20 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
      */
     static associate(models: any) {
       // define association here
+      sports_facility_type.hasOne(models.sports_facility, {
+        foreignKey: "sports_facility_type_id",
+      });
+      sports_facility_type.belongsToMany(
+        models.sports_facility_characteristic,
+        {
+          through: "type_characteristic",
+          foreignKey: "type_id",
+          timestamps: false,
+        }
+      );
+      sports_facility_type.hasMany(models.tournament, {
+        foreignKey: "sports_facility_type_id",
+      });
     }
   }
   sports_facility_type.init(

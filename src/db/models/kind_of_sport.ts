@@ -11,6 +11,12 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
      */
     static associate(models: any) {
       // define association here
+      kind_of_sport.belongsToMany(models.sportsman, {
+        through: "sportsman_kind_of_sport",
+        foreignKey: "kind_of_sport_id",
+        timestamps: false,
+      });
+      kind_of_sport.hasMany(models.trainer, { foreignKey: "kind_of_sport_id" });
     }
   }
   kind_of_sport.init(

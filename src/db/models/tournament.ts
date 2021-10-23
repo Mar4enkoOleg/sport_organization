@@ -11,6 +11,16 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
      */
     static associate(models: any) {
       // define association here
+      tournament.belongsTo(models.organizator, {
+        foreignKey: "organizator_id",
+      });
+      tournament.belongsTo(models.sports_facility_type, {
+        foreignKey: "sports_facility_type_id",
+      });
+      tournament.belongsTo(models.sports_facility, {
+        foreignKey: "sports_facility_id",
+      });
+      tournament.hasOne(models.rewarding, { foreignKey: "tournament_id" });
     }
   }
   tournament.init(
