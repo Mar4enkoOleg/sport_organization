@@ -10,13 +10,13 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       // define association here
       rewarding.belongsTo(models.tournament, { foreignKey: "tournament_id" });
-      rewarding.belongsTo(models.kind_of_sport, {
-        foreignKey: "kind_of_sport_id",
-      });
+      // rewarding.belongsTo(models.kind_of_sport, {
+      //   foreignKey: "kind_of_sport_id",
+      // });
       // не задана обратная связь
-      rewarding.belongsTo(models.sports_facility, {
-        foreignKey: "sport_facility_id",
-      });
+      // rewarding.belongsTo(models.sports_facility, {
+      //   foreignKey: "sport_facility_id",
+      // });
       rewarding.belongsToMany(models.reward, {
         through: "rewarding_reward",
         foreignKey: "rewarding_id",

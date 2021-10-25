@@ -23,6 +23,7 @@ module.exports = (sequelize: any, DataTypes: { INTEGER: any }) => {
         foreignKey: "reward_id",
         timestamps: false,
       });
+      reward.belongsTo(models.sportsman, { foreignKey: "sportsman_id" });
     }
   }
   reward.init(

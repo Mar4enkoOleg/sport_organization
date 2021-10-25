@@ -20,6 +20,7 @@ module.exports = (sequelize: any, DataTypes: { STRING: any; INTEGER: any }) => {
         timestamps: false,
       });
       sportsman.belongsTo(models.sport_club, { foreignKey: "sport_club_id" });
+      sportsman.hasMany(models.reward, { foreignKey: "sportsman_id" });
     }
   }
   sportsman.init(

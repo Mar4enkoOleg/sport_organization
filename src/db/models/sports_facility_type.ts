@@ -25,9 +25,9 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
           timestamps: false,
         }
       );
-      sports_facility_type.hasMany(models.tournament, {
-        foreignKey: "sports_facility_type_id",
-      });
+      // sports_facility_type.hasMany(models.tournament, {
+      //   foreignKey: "sports_facility_type_id",
+      // });
     }
   }
   sports_facility_type.init(

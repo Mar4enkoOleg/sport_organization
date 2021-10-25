@@ -15,7 +15,7 @@ module.exports = {
       updatedAt: "updated_at",
     },
     seederStorageTableName: "sequelize_data",
-    seederStorage: "sequelzie",
+    seederStorage: "sequelize",
     pool: {
       max: 10,
       min: 1,

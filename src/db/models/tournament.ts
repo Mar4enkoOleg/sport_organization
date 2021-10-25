@@ -14,9 +14,9 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
       tournament.belongsTo(models.organizator, {
         foreignKey: "organizator_id",
       });
-      tournament.belongsTo(models.sports_facility_type, {
-        foreignKey: "sports_facility_type_id",
-      });
+      // tournament.belongsTo(models.sports_facility_type, {
+      //   foreignKey: "sports_facility_type_id",
+      // });
       tournament.belongsTo(models.sports_facility, {
         foreignKey: "sports_facility_id",
       });
