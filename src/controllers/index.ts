@@ -100,3 +100,27 @@ export const getSportsmenByKindOfSports = async (
     return next(err);
   }
 };
+
+// Получить список тренеров указанного спортсмена.
+export const getTrainersBySportsman = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { sportsman } = req.query;
+    const trainers = await db.trainer.findAll({
+      attributes: ["full_name"],
+      include: [
+        {
+          model: db.sportsman,
+          where: { full_name: sportsman },
+          attributes: ["full_name"],
+        },
+      ],
+    });
+    return res.json({ trainers });
+  } catch (err) {
+    return next(err);
+  }
+};
