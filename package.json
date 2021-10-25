@@ -8,7 +8,12 @@
     "db": "npx sequelize-cli db:create",
     "seed": "npx sequelize-cli db:seed:all"
   },
-  "keywords": [],
+  "keywords": [
+    "sequelize",
+    "typescript",
+    "express",
+    "postgres"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
