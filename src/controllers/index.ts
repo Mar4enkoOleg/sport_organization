@@ -219,3 +219,20 @@ export const getSportClubsAndSportsmen = async (
     return next(err);
   }
 };
+
+// Получить список тренеров по определенному виду спорта.
+export const getTrainersByKindOfSport = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { kind_of_sport } = req.query;
+    const trainers = await db.trainer.findAll({
+      include: [{ model: db.kind_of_sport, where: { name: kind_of_sport } }],
+    });
+    return res.json({ trainers });
+  } catch (err) {
+    return next(err);
+  }
+};
