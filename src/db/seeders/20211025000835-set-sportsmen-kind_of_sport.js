@@ -6,6 +6,10 @@ const sportsmenKindOfSport = [
     sportsman_id: 1,
   },
   {
+    kind_of_sport_id: 2,
+    sportsman_id: 1,
+  },
+  {
     kind_of_sport_id: 1,
     sportsman_id: 2,
   },
@@ -15,6 +19,10 @@ const sportsmenKindOfSport = [
   },
   {
     kind_of_sport_id: 2,
+    sportsman_id: 4,
+  },
+  {
+    kind_of_sport_id: 1,
     sportsman_id: 4,
   },
 ];

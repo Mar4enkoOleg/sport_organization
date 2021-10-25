@@ -50,7 +50,7 @@ export const getSportsmenByKindOfSport = async (
     });
     return res.json({ sportsmen });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -69,6 +69,34 @@ export const getSportsmanByTrainer = async (
     });
     return res.json({ sportsmen });
   } catch (err) {
-    next(err);
+    return next(err);
+  }
+};
+
+// Получить список спортсменов, занимающихся
+// более чем одним видом спорта с указанием этих видов спорта.
+export const getSportsmenByKindOfSports = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { kind_of_sports } = req.query;
+
+    const sportsmen = await db.sportsman.findAll({
+      include: [
+        {
+          model: db.kind_of_sport,
+          where: {
+            name: {
+              [Op.in]: kind_of_sports!,
+            },
+          },
+        },
+      ],
+    });
+    return res.json({ sportsmen });
+  } catch (err) {
+    return next(err);
   }
 };
