@@ -26,6 +26,11 @@ module.exports = (sequelize: any, DataTypes: { STRING: any; INTEGER: any }) => {
         foreignKey: "sportsman_id",
         timestamps: false,
       });
+      sportsman.belongsToMany(models.tournament, {
+        through: "sportsman_tournament",
+        foreignKey: "sportsman_id",
+        timestamps: false,
+      });
     }
   }
   sportsman.init(

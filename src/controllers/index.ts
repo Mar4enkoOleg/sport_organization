@@ -236,3 +236,52 @@ export const getTrainersByKindOfSport = async (
     return next(err);
   }
 };
+
+//Получить список организаторов соревнований
+// и число проведенных ими соревнований в течение определенного периода времени.
+export const getOrganizatorsWithTournaments = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const tournaments = await db.tournament.findAll({
+      attributes: ["name"],
+    });
+    const arr: any[] = [];
+    tournaments.forEach((t: any) => {
+      arr.push(t.dataValues.name);
+    });
+
+    const organizators = await db.organizator.findAndCountAll({
+      include: [
+        {
+          model: db.tournament,
+          where: {
+            name: { [Op.in]: arr },
+          },
+        },
+      ],
+    });
+    return res.json({ organizators });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+// Получить перечень спортивных сооружений и даты проведения
+// на них соревнований в течение определенного периода времени.
+export const getSportFacilities = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const sportsFacilities = await db.sports_facility.findAll({
+      include: [{ model: db.tournament, attributes: ["name", "created_at"] }],
+    });
+    return res.json({ sportsFacilities });
+  } catch (err) {
+    return next(err);
+  }
+};
