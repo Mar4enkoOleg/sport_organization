@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getPrizzersByTournament,
   getSportsFacility,
   getSportsmanByTrainer,
   getSportsmenByKindOfSport,
@@ -16,6 +17,7 @@ router
   .get("/sportsman_by_trainer", getSportsmanByTrainer)
   .get("/sportsman_by_kind_of_sports", getSportsmenByKindOfSports)
   .get("/trainers_by_sportsman", getTrainersBySportsman)
-  .get("/tournaments_by_organizator", getTournamentsByOrganizator);
+  .get("/tournaments_by_organizator", getTournamentsByOrganizator)
+  .get("/prizzers_by_tournament", getPrizzersByTournament);
 
 export default router;

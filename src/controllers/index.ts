@@ -145,3 +145,26 @@ export const getTournamentsByOrganizator = async (
     return next(err);
   }
 };
+
+// Получить список призеров указанного соревнования.
+export const getPrizzersByTournament = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { tournament } = req.query;
+    const prizzers = await db.tournament.findAll({
+      include: [
+        {
+          model: db.rewarding,
+          include: [{ model: db.reward, include: [{ model: db.sportsman }] }],
+        },
+      ],
+      where: { name: tournament },
+    });
+    return res.json({ prizzers });
+  } catch (err) {
+    return next(err);
+  }
+};
