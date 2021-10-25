@@ -124,3 +124,24 @@ export const getTrainersBySportsman = async (
     return next(err);
   }
 };
+
+// Получить перечень соревнований,
+// проведенных в течение заданного периода времени
+// в целом либо указанным организатором.
+
+export const getTournamentsByOrganizator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { organizator } = req.query;
+    const tournaments = await db.tournament.findAll({
+      include: [{ model: db.organizator, where: { name: organizator } }],
+    });
+
+    return res.json({ tournaments });
+  } catch (err) {
+    return next(err);
+  }
+};
