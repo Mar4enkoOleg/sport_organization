@@ -53,3 +53,22 @@ export const getSportsmenByKindOfSport = async (
     next(err);
   }
 };
+
+// Получить список спортсменов, тренирующихся у
+// некого тренера в целом либо не ниже определенного разряда.
+export const getSportsmanByTrainer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { skill_lvl, trainer } = req.query;
+    const sportsmen = await db.sportsman.findAll({
+      where: { skill_lvl: { [Op.gte]: skill_lvl } },
+      include: [{ model: db.trainer, where: { full_name: trainer } }],
+    });
+    return res.json({ sportsmen });
+  } catch (err) {
+    next(err);
+  }
+};
