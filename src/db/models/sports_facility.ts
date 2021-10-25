@@ -20,6 +20,11 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
       sports_facility.hasMany(models.tournament, {
         foreignKey: "sports_facility_id",
       });
+      sports_facility.belongsToMany(models.kind_of_sport, {
+        through: "sport_facility_kind_of_sport",
+        foreignKey: "sport_facility_id",
+        timestamps: false,
+      });
     }
   }
   sports_facility.init(

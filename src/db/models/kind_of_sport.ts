@@ -17,6 +17,11 @@ module.exports = (sequelize: any, DataTypes: { STRING: any }) => {
         timestamps: false,
       });
       kind_of_sport.hasMany(models.trainer, { foreignKey: "kind_of_sport_id" });
+      kind_of_sport.belongsToMany(models.sports_facility, {
+        through: "sport_facility_kind_of_sport",
+        foreignKey: "kind_of_sport_id",
+        timestamps: false,
+      });
     }
   }
   kind_of_sport.init(

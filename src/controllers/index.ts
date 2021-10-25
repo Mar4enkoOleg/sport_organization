@@ -168,3 +168,32 @@ export const getPrizzersByTournament = async (
     return next(err);
   }
 };
+
+// Получить перечень соревнований, проведенных в указанном спортивном
+// сооружении в целом либо по определенному виду спорта.
+export const getTournamentsBySportFacility = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { sports_facility, kind_of_sport } = req.query;
+    const tournaments = await db.tournament.findAll({
+      include: [
+        {
+          model: db.sports_facility,
+          where: { name: sports_facility },
+          include: [
+            {
+              model: db.kind_of_sport,
+              where: { name: kind_of_sport },
+            },
+          ],
+        },
+      ],
+    });
+    return res.json({ tournaments });
+  } catch (err) {
+    return next(err);
+  }
+};

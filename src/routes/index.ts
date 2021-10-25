@@ -6,6 +6,7 @@ import {
   getSportsmenByKindOfSport,
   getSportsmenByKindOfSports,
   getTournamentsByOrganizator,
+  getTournamentsBySportFacility,
   getTrainersBySportsman,
 } from "../controllers";
 
@@ -18,6 +19,7 @@ router
   .get("/sportsman_by_kind_of_sports", getSportsmenByKindOfSports)
   .get("/trainers_by_sportsman", getTrainersBySportsman)
   .get("/tournaments_by_organizator", getTournamentsByOrganizator)
-  .get("/prizzers_by_tournament", getPrizzersByTournament);
+  .get("/prizzers_by_tournament", getPrizzersByTournament)
+  .get("/tournaments_by_sport_facility", getTournamentsBySportFacility);
 
 export default router;
