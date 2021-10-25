@@ -197,3 +197,25 @@ export const getTournamentsBySportFacility = async (
     return next(err);
   }
 };
+
+// Получить перечень спортивных клубов и число спортсменов этих клубов,
+// участвовавших в спортивных соревнованиях в течение заданного интервала времени.
+
+export const getSportClubsAndSportsmen = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const sportClubs = await db.sport_club.findAll({
+      include: [
+        {
+          model: db.sportsman,
+        },
+      ],
+    });
+    return res.json({ sportClubs });
+  } catch (err) {
+    return next(err);
+  }
+};
